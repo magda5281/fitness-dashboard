@@ -3,13 +3,13 @@ import { AvatarIcon } from '@radix-ui/react-icons';
 
 export default function DashboardPage() {
   return (
-    <main className='flex min-h-screen flex-col  p-6'>
+    <main className='flex min-h-screen flex-col  p-4 md:p-6 lg:p-8'>
       <div className='flex items-center justify-between'>
         <h1>Fitness & Health Dashboard</h1> <AvatarIcon className='w-8 h-8' />
       </div>
       <div className='p-4 md:p-6 space-y-4'>
         {/* KPI Cards Row */}
-        <div className='grid grid-cols-2  lg:grid-cols-4 gap-4'>
+        <div className='grid grid-cols-2  lg:grid-cols-4 gap-4 md:gap-6'>
           <GenericCard title="Today's Steps" description='+12% from yesterday'>
             <div className='md:text-2xl font-bold '>8,432</div>
           </GenericCard>
