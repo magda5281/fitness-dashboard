@@ -12,21 +12,23 @@ import {
 export const SleepEfficiency = ({
   data,
 }: {
-  data: {
-    type: 'duration' | 'efficiency' | 'latency';
-    value: number;
-    unit: string;
-    ideal?: number;
-  }[];
+  data:
+    | {
+        type: 'duration' | 'efficiency' | 'latency';
+        value: number;
+        unit: string;
+        ideal?: number;
+      }[]
+    | undefined;
 }) => {
   // Custom tick renderer for displaying type and unit together
   const renderCustomTick = (props: any) => {
     const { x, y, payload, index } = props;
     // Get the corresponding unit from the data array
     // Make sure `data` is available in this scope (from props)
-    const unit = data[index]?.unit || '';
-    const type = data[index]?.type || '';
-    console.log(type);
+    const unit = data ? data[index]?.unit : '';
+    const type = data ? data[index]?.type : '';
+
     return (
       <text
         x={x}
