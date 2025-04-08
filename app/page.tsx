@@ -9,7 +9,14 @@ export default async function DashboardPage() {
   const fitnessData = await getFitnessData();
   const today = new Date().toISOString().split('T')[0];
   const currentSteps = findByDate(fitnessData.steps, today);
+  const lastSteps = currentSteps
+    ? fitnessData.steps[fitnessData.steps.length - 2]
+    : null;
+
   const heartHealth = findByDate(fitnessData.heartRateData, today);
+  const recentHearHealth = heartHealth
+    ? fitnessData.heartRateData[fitnessData.heartRateData.length - 2]
+    : null;
   const hydration = findByDate(fitnessData.hydration, today);
   const calories = findByDate(fitnessData.calories, today);
 
@@ -21,15 +28,26 @@ export default async function DashboardPage() {
       <div className='p-4 md:p-6 space-y-4'>
         {/* KPI Cards Row */}
         <div className='grid grid-cols-2  lg:grid-cols-4 gap-4 md:gap-6'>
-          <GenericCard title="Today's Steps" description='+12% from yesterday'>
+          <GenericCard
+            title='Steps'
+            description={`${
+              (currentSteps?.steps ?? 0) - (lastSteps?.steps ?? 0)
+            } vs yesterday`}
+          >
             <div className='md:text-2xl font-bold flex items-center justify-center gap-2 md:gap-4'>
-              <Footprints /> {currentSteps?.steps.toLocaleString()}
+              <Footprints /> {currentSteps?.steps.toLocaleString() ?? 0}
             </div>
           </GenericCard>
-          <GenericCard title='Heart health' description='+10% from yesterday'>
+          <GenericCard
+            title='Heart health'
+            description={`${
+              (heartHealth?.avgRestingHR ?? 0) -
+              (recentHearHealth?.avgRestingHR ?? 0)
+            } Bpm vs yesterday`}
+          >
             <div className='md:text-2xl font-bold flex items-center justify-center gap-2 md:gap-4'>
               <Heart color='red' />
-              {heartHealth?.avgRestingHR} Bpm
+              {heartHealth?.avgRestingHR ?? 0} Bpm
             </div>
           </GenericCard>
           <GenericCard
@@ -43,7 +61,7 @@ export default async function DashboardPage() {
               {`${hydration?.current} ${hydration?.unit}`}
             </div>
           </GenericCard>
-          <GenericCard title='Calories' description='Consumed vs Burned'>
+          <GenericCard title='Calories intake' description='Consumed vs Burned'>
             <div className='md:text-2xl font-bold flex items-center justify-center gap-2 md:gap-4'>
               <Flame color='orange' />
               {`${(calories?.consumed ?? 0) - (calories?.burned ?? 0)} ${

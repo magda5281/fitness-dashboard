@@ -1,4 +1,6 @@
 import { FitnessData } from '@/types';
+const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+const today = new Date().toISOString().split('T')[0];
 
 export const fitnessData: FitnessData = {
   steps: [
@@ -9,7 +11,8 @@ export const fitnessData: FitnessData = {
     { date: '2025-04-05', steps: 8765 },
     { date: '2025-04-06', steps: 10243 },
     { date: '2025-04-07', steps: 5432 },
-    { date: '2025-04-08', steps: 5772 },
+    { date: yesterday, steps: 6772 },
+    { date: today, steps: 5772 },
   ],
 
   heartRateData: [
@@ -24,7 +27,7 @@ export const fitnessData: FitnessData = {
       avgRestingHR: 62,
     },
     {
-      date: '2025-04-06',
+      date: today,
       zones: [
         { name: 'Resting', value: 320, minBpm: 50, maxBpm: 70 },
         { name: 'Fat Burn', value: 145, minBpm: 70, maxBpm: 120 },
@@ -53,7 +56,7 @@ export const fitnessData: FitnessData = {
       ],
     },
     {
-      date: '2025-04-06',
+      date: yesterday,
       startTime: '23:15',
       endTime: '07:30',
       stages: [
@@ -72,8 +75,8 @@ export const fitnessData: FitnessData = {
 
   weightTrend: [
     { date: '2023-01-01', value: 75.3, unit: 'kg' },
-    { date: '2023-02-01', value: 74.1, unit: 'kg' },
-    { date: '2023-03-01', value: 73.2, unit: 'kg' },
+    { date: yesterday, value: 74.1, unit: 'kg' },
+    { date: today, value: 73.2, unit: 'kg' },
   ],
 
   workouts: [
@@ -89,13 +92,13 @@ export const fitnessData: FitnessData = {
   calories: [
     { date: '2023-06-01', consumed: 2200, burned: 1900, unit: 'kcal' },
     { date: '2023-06-02', consumed: 1800, burned: 2100, unit: 'kcal' },
-    { date: '2025-04-07', consumed: 1800, burned: 2100, unit: 'kcal' },
+    { date: today, consumed: 1800, burned: 2100, unit: 'kcal' },
   ],
 
   hydration: [
     { date: '2023-06-01', current: 1.8, goal: 2.5, unit: 'liters' },
     { date: '2023-06-02', current: 2.2, goal: 2.5, unit: 'liters' },
-    { date: '2025-04-07', current: 2.2, goal: 2.5, unit: 'liters' },
+    { date: today, current: 2.2, goal: 2.5, unit: 'liters' },
   ],
 
   vo2max: [
