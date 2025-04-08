@@ -12,6 +12,12 @@ export type HeartRateZone = {
   maxBpm: number;
 }[];
 
+export type HeartRateData = {
+  date: string;
+  zones: HeartRateZone;
+  avgRestingHR: number;
+}[];
+
 // 3. Sleep Quality
 
 export type SleepData = {
@@ -89,25 +95,13 @@ export type ActivityDistribution = {
 
 export type FitnessData = {
   steps: StepsData;
-
-  heartRateData: {
-    date: string;
-    zones: HeartRateZone;
-    avgRestingHR: number;
-  }[];
+  heartRateData: HeartRateData;
   sleepQuality: SleepData;
-
   weightTrend: WeightTrend;
-
   workouts: Workouts;
-
   calories: Calories;
-
   hydration: Hydration;
-
   vo2max: VO2Max;
-
   bodyFat: BodyFat;
-
   activityDistribution: ActivityDistribution;
 };

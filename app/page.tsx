@@ -1,4 +1,5 @@
 import { StepsChart } from '@/components/charts/stepsChart';
+import { HeartRateChart } from '@/components/charts/heartRateChart';
 import { GenericCard } from '@/components/genericCard';
 import { getFitnessData } from '@/lib/data';
 import { findByDate } from '@/lib/utils';
@@ -14,7 +15,7 @@ export default async function DashboardPage() {
     : null;
 
   const heartHealth = findByDate(fitnessData.heartRateData, today);
-  const recentHearHealth = heartHealth
+  const recentHeartHealth = heartHealth
     ? fitnessData.heartRateData[fitnessData.heartRateData.length - 2]
     : null;
   const hydration = findByDate(fitnessData.hydration, today);
@@ -46,7 +47,7 @@ export default async function DashboardPage() {
             title='Heart health'
             description={`${
               (heartHealth?.avgRestingHR ?? 0) -
-              (recentHearHealth?.avgRestingHR ?? 0)
+              (recentHeartHealth?.avgRestingHR ?? 0)
             } Bpm vs yesterday`}
           >
             <div className='md:text-2xl font-bold flex items-center justify-center gap-2 md:gap-4'>
@@ -79,19 +80,20 @@ export default async function DashboardPage() {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
           {/* Example Chart 1 */}
 
-          <GenericCard
-            title='Step Activity'
-            className='col-span-1 min-h-[200px] md:h-[300px] lg:h-[350px]'
-          >
-            <StepsChart data={fitnessData.steps} />
+          <GenericCard title='Step Activity' className='col-span-1'>
+            <div className='h-[200px] md:h-[300px]'>
+              <StepsChart data={fitnessData.steps} />
+            </div>
           </GenericCard>
           {/* Example Chart 2 - With description */}
           <GenericCard
             title='Heart Rate'
-            description='Last 7 days average'
-            className='col-span-1 min-h-[200px] md:h-[300px] lg:h-[350px]'
+            description='Time in each HR zone'
+            className='col-span-1'
           >
-            <div className=''>Chart</div>
+            <div className=' h-[200px] md:h-[300px]'>
+              <HeartRateChart data={heartHealth?.zones ?? []} />
+            </div>
           </GenericCard>
 
           {/* Add remaining charts */}
