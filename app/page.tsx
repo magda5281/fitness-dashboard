@@ -2,7 +2,7 @@ import { StepsChart } from '@/components/charts/stepsChart';
 import { HeartRateChart } from '@/components/charts/heartRateChart';
 import { GenericCard } from '@/components/genericCard';
 import { getFitnessData } from '@/lib/data';
-import { findByDate } from '@/lib/utils';
+import { findByDate, formatDate } from '@/lib/utils';
 import { AvatarIcon } from '@radix-ui/react-icons';
 import { Droplet, Flame, Footprints, Heart } from 'lucide-react';
 import { SleepEfficiency } from '@/components/charts/sleepEfficiency';
@@ -15,15 +15,21 @@ export default async function DashboardPage() {
   const lastSteps = currentSteps
     ? fitnessData.steps[fitnessData.steps.length - 2]
     : null;
-
-  const heartHealth = findByDate(fitnessData.heartRateData, today);
-  const recentHeartHealth = heartHealth
-    ? fitnessData.heartRateData[fitnessData.heartRateData.length - 2]
+  const heartRateData = fitnessData.heartRateData;
+  const currentHeartHealth = findByDate(heartRateData, today);
+  const recentHeartHealth = currentHeartHealth
+    ? fitnessData.heartRateData[heartRateData.length - 2]
     : null;
+
+  const avgRestingHRData = heartRateData.map((data) => ({
+    date: formatDate(data.date),
+    avgRestingHR: data.avgRestingHR,
+  }));
+
   const hydration = findByDate(fitnessData.hydration, today);
   const calories = findByDate(fitnessData.calories, today);
   const sleepEfficiency = findByDate(fitnessData.sleepQuality, today);
-  console.log('sleepEfficiency', sleepEfficiency);
+
   return (
     <main className='flex gap-4 min-h-screen flex-col  '>
       <div className='sticky top-0 z-50 bg-background p-4 md:p-6 lg:p-8 border-b'>
@@ -49,13 +55,13 @@ export default async function DashboardPage() {
           <GenericCard
             title='Heart health'
             description={`${
-              (heartHealth?.avgRestingHR ?? 0) -
+              (currentHeartHealth?.avgRestingHR ?? 0) -
               (recentHeartHealth?.avgRestingHR ?? 0)
             } Bpm vs yesterday`}
           >
             <div className='md:text-2xl font-bold flex items-center justify-center gap-2 md:gap-4'>
               <Heart color='red' />
-              {heartHealth?.avgRestingHR ?? 0} Bpm
+              {currentHeartHealth?.avgRestingHR ?? 0} Bpm
             </div>
           </GenericCard>
           <GenericCard
@@ -93,7 +99,7 @@ export default async function DashboardPage() {
             className='col-span-1'
           >
             <div className=' h-[200px] md:h-[300px]'>
-              <HeartRateChart data={heartHealth?.zones ?? []} />
+              <HeartRateChart data={currentHeartHealth?.zones ?? []} />
             </div>
           </GenericCard>
           <GenericCard
@@ -102,7 +108,7 @@ export default async function DashboardPage() {
             className='col-span-1'
           >
             <div className=' h-[200px] md:h-[300px]'>
-              <AvgRestingHRChart data={fitnessData?.heartRateData ?? []} />
+              <AvgRestingHRChart data={avgRestingHRData ?? []} />
             </div>
           </GenericCard>
 
