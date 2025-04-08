@@ -21,13 +21,17 @@ export default async function DashboardPage() {
   const calories = findByDate(fitnessData.calories, today);
 
   return (
-    <main className='flex min-h-screen flex-col  p-4 md:p-6 lg:p-8'>
-      <div className='flex items-center justify-between'>
-        <h1>Fitness & Health Dashboard</h1> <AvatarIcon className='w-8 h-8' />
+    <main className='flex gap-4 min-h-screen flex-col  '>
+      <div className='sticky top-0 z-50 bg-background p-4 md:p-6 lg:p-8 border-b'>
+        <div className='flex items-center justify-between'>
+          <h1 className='font-bold text-xl'>Fitness & Health Dashboard</h1>
+          <AvatarIcon className='w-8 h-8' />
+        </div>
       </div>
-      <div className='p-4 md:p-6 space-y-4'>
+
+      <div className='flex-1 overflow-auto p-4 md:p-6 lg:p-8'>
         {/* KPI Cards Row */}
-        <div className='grid grid-cols-2  lg:grid-cols-4 gap-4 md:gap-6'>
+        <div className='grid grid-cols-2  lg:grid-cols-4 gap-4 md:gap-6 mb-4'>
           <GenericCard
             title='Steps'
             description={`${
@@ -72,18 +76,20 @@ export default async function DashboardPage() {
         </div>
 
         {/* Charts Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
           {/* Example Chart 1 */}
 
-          <GenericCard title='Step Activity' className='col-span-1'>
+          <GenericCard
+            title='Step Activity'
+            className='col-span-1 min-h-[200px] md:h-[300px] lg:h-[350px]'
+          >
             <StepsChart data={fitnessData.steps} />
           </GenericCard>
-
           {/* Example Chart 2 - With description */}
           <GenericCard
             title='Heart Rate'
             description='Last 7 days average'
-            className='col-span-1 '
+            className='col-span-1 min-h-[200px] md:h-[300px] lg:h-[350px]'
           >
             <div className=''>Chart</div>
           </GenericCard>
