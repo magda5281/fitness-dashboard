@@ -40,22 +40,6 @@ export const fitnessData: FitnessData = {
 
   sleepQuality: [
     {
-      date: '2025-04-05',
-      startTime: '23:15',
-      endTime: '07:30',
-      stages: [
-        { stage: 'awake', minutes: 15 },
-        { stage: 'light', minutes: 300 },
-        { stage: 'deep', minutes: 120 },
-        { stage: 'rem', minutes: 100 },
-      ],
-      metrics: [
-        { type: 'duration', value: 7.5, unit: 'hours', ideal: 8 },
-        { type: 'efficiency', value: 90, unit: '%', ideal: 85 },
-        { type: 'latency', value: 15, unit: 'minutes', ideal: 20 },
-      ],
-    },
-    {
       date: yesterday,
       startTime: '23:15',
       endTime: '07:30',
@@ -66,9 +50,25 @@ export const fitnessData: FitnessData = {
         { stage: 'rem', minutes: 100 },
       ],
       metrics: [
-        { type: 'duration', value: 7.5, unit: 'hours', ideal: 8 },
+        { type: 'duration', value: 7.5, unit: 'hrs', ideal: 8 },
         { type: 'efficiency', value: 90, unit: '%', ideal: 85 },
-        { type: 'latency', value: 15, unit: 'minutes', ideal: 20 },
+        { type: 'latency', value: 15, unit: 'min', ideal: 20 },
+      ],
+    },
+    {
+      date: today,
+      startTime: '23:15',
+      endTime: '07:30',
+      stages: [
+        { stage: 'awake', minutes: 15 },
+        { stage: 'light', minutes: 300 },
+        { stage: 'deep', minutes: 120 },
+        { stage: 'rem', minutes: 100 },
+      ],
+      metrics: [
+        { type: 'duration', value: 7.5, unit: 'hrs', ideal: 8 },
+        { type: 'efficiency', value: 90, unit: '%', ideal: 85 },
+        { type: 'latency', value: 15, unit: 'min', ideal: 20 },
       ],
     },
   ],

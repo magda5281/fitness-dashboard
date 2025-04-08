@@ -5,6 +5,8 @@ import { getFitnessData } from '@/lib/data';
 import { findByDate } from '@/lib/utils';
 import { AvatarIcon } from '@radix-ui/react-icons';
 import { Droplet, Flame, Footprints, Heart } from 'lucide-react';
+import { SleepEfficiency } from '@/components/charts/sleepEfficiency';
+import { AvgRestingHRChart } from '@/components/charts/avgRestingHRChart';
 
 export default async function DashboardPage() {
   const fitnessData = await getFitnessData();
@@ -20,7 +22,8 @@ export default async function DashboardPage() {
     : null;
   const hydration = findByDate(fitnessData.hydration, today);
   const calories = findByDate(fitnessData.calories, today);
-
+  const sleepEfficiency = findByDate(fitnessData.sleepQuality, today);
+  console.log('sleepEfficiency', sleepEfficiency);
   return (
     <main className='flex gap-4 min-h-screen flex-col  '>
       <div className='sticky top-0 z-50 bg-background p-4 md:p-6 lg:p-8 border-b'>
@@ -78,16 +81,14 @@ export default async function DashboardPage() {
 
         {/* Charts Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
-          {/* Example Chart 1 */}
-
           <GenericCard title='Step Activity' className='col-span-1'>
             <div className='h-[200px] md:h-[300px]'>
               <StepsChart data={fitnessData.steps} />
             </div>
           </GenericCard>
-          {/* Example Chart 2 - With description */}
+
           <GenericCard
-            title='Heart Rate'
+            title='Current Heart Rate'
             description='Time in each HR zone'
             className='col-span-1'
           >
@@ -95,8 +96,25 @@ export default async function DashboardPage() {
               <HeartRateChart data={heartHealth?.zones ?? []} />
             </div>
           </GenericCard>
+          <GenericCard
+            title='Average resting heart rate'
+            description='Heart Rate Over Time'
+            className='col-span-1'
+          >
+            <div className=' h-[200px] md:h-[300px]'>
+              <AvgRestingHRChart data={fitnessData?.heartRateData ?? []} />
+            </div>
+          </GenericCard>
 
-          {/* Add remaining charts */}
+          <GenericCard
+            title='Sleep Efficiency'
+            description='How well did you sleep?'
+            className='col-span-1'
+          >
+            <div className='h-[200px] md:h-[300px]'>
+              <SleepEfficiency data={sleepEfficiency?.metrics} />
+            </div>
+          </GenericCard>
         </div>
       </div>
     </main>
