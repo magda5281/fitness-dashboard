@@ -1,4 +1,5 @@
 'use client';
+import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { formatDate } from '@/lib/utils';
 import type { StepsData } from '@/types';
 import { useEffect, useState } from 'react';
@@ -14,14 +15,7 @@ import {
 } from 'recharts';
 
 export function StepsChart({ data }: { data: StepsData }) {
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Safely access `window` in useEffect
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsMobile(window.innerWidth < 768);
-    }
-  }, []);
+  const isMobile = useIsMobile(768);
   const formattedData = data.map((item) => ({
     ...item,
     date: formatDate(item.date),
