@@ -123,11 +123,18 @@ export const fitnessData: FitnessData = {
   vo2max: [
     { date: '2023-01-01', value: 38, unit: 'ml/kg/min', workout: 'Run' },
     { date: '2023-02-01', value: 40, unit: 'ml/kg/min', workout: 'Cycle' },
+    { date: '2023-03-01', value: 39, unit: 'ml/kg/min', workout: 'Swim' },
+    { date: '2023-04-01', value: 41, unit: 'ml/kg/min', workout: 'Run' },
+    { date: '2023-05-01', value: 42, unit: 'ml/kg/min', workout: 'Cycle' },
+    { date: '2023-06-01', value: 43, unit: 'ml/kg/min', workout: 'Cycle' },
+    { date: '2023-07-01', value: 50, unit: 'ml/kg/min', workout: 'Run' },
   ],
 
   bodyFat: [
-    { date: '2023-01-01', region: 'Arms', value: 18.5, unit: '%' },
-    { date: '2023-01-01', region: 'Core', value: 22.1, unit: '%' },
+    { name: 'Arms', value: 17 },
+    { name: 'Chest', value: 20 },
+    { name: 'Core', value: 22 },
+    { name: 'Legs', value: 16 },
   ],
 
   activityDistribution: [

@@ -10,6 +10,9 @@ import { AvgRestingHRChart } from '@/components/charts/avgRestingHRChart';
 import { SleepStagesChart } from '@/components/charts/sleepStagesChart';
 import { WeightChart } from '@/components/charts/weightChart';
 import { DailyWorkoutChart } from '@/components/charts/workoutChart';
+import { VO2MaxChart } from '@/components/charts/VO2MaxChart';
+import { CaloriesWorkoutWeight } from '@/components/charts/caloriesWorkoutWeight';
+import { BodyFatChart } from '@/components/charts/bodyFat';
 
 export default async function DashboardPage() {
   const fitnessData = await getFitnessData();
@@ -61,6 +64,37 @@ export default async function DashboardPage() {
     value: item.value,
     unit: item.unit,
   }));
+
+  const vo2MaxData = fitnessData.vo2max.map((item) => ({
+    ...item,
+    date: formatDate(item.date),
+  }));
+
+  const bodyFat = fitnessData.bodyFat;
+  console.log('bodyFat', bodyFat);
+  //which is
+  //  bodyFat: [
+  //  { name: 'Arms', size: 18.5 },
+  //         { name: 'Chest', size: 20.0 },
+  //         { name: 'Core', size: 22.1 },
+  //         { name: 'Legs', size: 15.0 },
+  //         { name: 'Back', size: 16.3 },
+  // ],
+  //the above needs to be made into
+
+  const bodyFatData = [
+    {
+      name: 'Body Fat',
+      children: [
+        { name: 'Arms', size: 18.5 },
+        { name: 'Chest', size: 20.0 },
+        { name: 'Core', size: 22.1 },
+        { name: 'Legs', size: 15.0 },
+        { name: 'Back', size: 16.3 },
+      ],
+    },
+  ];
+
   return (
     <main className='flex gap-4 min-h-screen flex-col  '>
       <div className='sticky top-0 z-50 bg-background p-4 md:p-6 lg:p-8 border-b'>
@@ -123,7 +157,6 @@ export default async function DashboardPage() {
               <StepsChart data={stepsData} />
             </div>
           </GenericCard>
-
           <GenericCard
             title='Current heart rate'
             description='Time in each HR zone'
@@ -142,7 +175,6 @@ export default async function DashboardPage() {
               <AvgRestingHRChart data={avgRestingHRData ?? []} />
             </div>
           </GenericCard>
-
           <GenericCard
             title='Sleep efficiency'
             description='How well did you sleep?'
@@ -152,7 +184,6 @@ export default async function DashboardPage() {
               <SleepEfficiency data={sleepEfficiency?.metrics} />
             </div>
           </GenericCard>
-
           <GenericCard
             title='Sleep stages'
             description='The length of REM or Deep sleep?'
@@ -178,6 +209,33 @@ export default async function DashboardPage() {
           >
             <div className='h-[200px] md:h-[300px]'>
               <DailyWorkoutChart data={currentWorkout} />
+            </div>
+          </GenericCard>
+          <GenericCard
+            title='VO2 Max trend'
+            description='VO2 Max over time'
+            className='col-span-1'
+          >
+            <div className='h-[200px] md:h-[300px]'>
+              <VO2MaxChart data={vo2MaxData} />
+            </div>
+          </GenericCard>
+          <GenericCard
+            title='Calories vs workout vs weight'
+            description=''
+            className='col-span-1'
+          >
+            <div className='h-[200px] md:h-[300px]'>
+              <CaloriesWorkoutWeight />
+            </div>
+          </GenericCard>
+          <GenericCard
+            title='Body fat percentage'
+            description=''
+            className='col-span-1'
+          >
+            <div className='h-[200px] md:h-[300px]'>
+              <BodyFatChart data={bodyFatData} />
             </div>
           </GenericCard>
         </div>
