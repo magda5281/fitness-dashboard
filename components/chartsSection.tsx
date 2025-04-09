@@ -113,7 +113,6 @@ export const ChartsSection = ({
           <WeightChart data={weightData} />
         </div>
       </GenericCard>
-
       <GenericCard
         title='VO2 Max trend'
         description='VO2 Max over time'
