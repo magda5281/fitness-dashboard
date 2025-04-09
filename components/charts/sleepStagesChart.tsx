@@ -1,6 +1,10 @@
 'use client';
 
 import {
+  CHART_LEGEND_STYLES,
+  CHART_TOOLTIP_STYLES,
+} from '@/lib/constants/chartStyles';
+import {
   ResponsiveContainer,
   BarChart,
   XAxis,
@@ -24,10 +28,10 @@ export const SleepStagesChart = ({ data }: { data: SleepData }) => {
 
   // Map each stage key to a color
   const colorMap: { [key: string]: string } = {
-    awake: '#ffc658',
-    light: '#8884d8',
-    deep: '#82ca9d',
-    rem: '#d0ed57',
+    awake: 'var(--data-yellow)',
+    light: 'var(--data-violet)',
+    deep: 'var(--data-green)',
+    rem: 'var(--data-light-green)',
   };
 
   return (
@@ -40,23 +44,9 @@ export const SleepStagesChart = ({ data }: { data: SleepData }) => {
           minTickGap={0}
         />
         <YAxis tick={{ fontSize: 8 }} interval={0} width={40} />
-        <Tooltip
-          contentStyle={{
-            fontSize: 'clamp(0.75rem, 1vw, 1rem)',
-            padding: 'clamp(4px, 1vw, 8px)',
-            color: '#333',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
-        />
-        <Legend
-          wrapperStyle={{
-            fontSize: 'clamp(0.75rem, 2vw, 1rem)',
-            padding: 'clamp(4px, 2vw, 8px)',
-          }}
-        />
-        {/* Dynamically render Bar elements for each sleep stage */}
+        <Tooltip {...CHART_TOOLTIP_STYLES} />
+        <Legend wrapperStyle={{ ...CHART_LEGEND_STYLES.wrapperStyle }} />
+
         {sleepStages.map((stage) => (
           <Bar
             key={stage}
@@ -67,7 +57,7 @@ export const SleepStagesChart = ({ data }: { data: SleepData }) => {
               position: 'middle',
               fontSize: 'clamp(0.5rem, 2vw, 0.75rem)',
               formatter: (value: number) => `${value} min`,
-              fill: 'text-black',
+              fill: 'text-gray-900',
             }}
           />
         ))}

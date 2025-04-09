@@ -10,7 +10,11 @@ import {
   Line,
   ResponsiveContainer,
 } from 'recharts';
-
+import {
+  CHART_TOOLTIP_STYLES,
+  CHART_X_AXIS_STYLES,
+  CHART_Y_AXIS_STYLES,
+} from '@/lib/constants/chartStyles';
 export const AvgRestingHRChart = ({
   data,
 }: {
@@ -28,26 +32,15 @@ export const AvgRestingHRChart = ({
         margin={{ top: 10, right: 10, left: 10, bottom: isMobile ? 10 : 20 }}
       >
         <CartesianGrid strokeDasharray='3 3' />
-        <XAxis
-          dataKey='date'
-          tick={{ fontSize: 'clamp(0.5rem, 2vw, 0.75rem)' }}
-          interval={0}
-          minTickGap={0}
-          angle={-45}
-          textAnchor='end'
+        <XAxis dataKey='date' {...CHART_X_AXIS_STYLES} />
+        <YAxis {...CHART_Y_AXIS_STYLES} />
+        <Tooltip {...CHART_TOOLTIP_STYLES} />
+        <Line
+          type='monotone'
+          dataKey='avgRestingHR'
+          stroke='var(--data-red)'
+          strokeWidth={2}
         />
-        <YAxis tick={{ fontSize: 8 }} interval={0} width={40} />
-        <Tooltip
-          contentStyle={{
-            fontSize: 'clamp(0.75rem, 1vw, 1rem)',
-            padding: 'clamp(4px, 1vw, 8px)',
-            color: '#333',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
-        />
-        <Line type='monotone' dataKey='avgRestingHR' stroke='#8884d8' />
       </LineChart>
     </ResponsiveContainer>
   );

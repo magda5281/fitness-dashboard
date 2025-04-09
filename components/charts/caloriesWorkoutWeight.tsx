@@ -1,5 +1,10 @@
 'use client';
 
+import {
+  CHART_TOOLTIP_STYLES,
+  CHART_X_AXIS_STYLES,
+  CHART_Y_AXIS_STYLES,
+} from '@/lib/constants/chartStyles';
 import React from 'react';
 import {
   ComposedChart,
@@ -39,33 +44,25 @@ export const CaloriesWorkoutWeight = () => {
         }}
       >
         <CartesianGrid stroke='#f5f5f5' />
-        <XAxis
-          dataKey='date'
-          tick={{ fontSize: 'clamp(0.5rem, 2vw, 0.75rem)' }}
-          interval={0}
-          minTickGap={0}
-          angle={-45}
-          textAnchor='end'
-        />
-        {/* Left Y-axis handles netCalories & workoutMinutes */}
+        <XAxis dataKey='date' {...CHART_X_AXIS_STYLES} />
+
         <YAxis
           yAxisId='left'
           label={{
             value: 'Calories / Workout (min)',
             angle: -90,
             textAnchor: 'middle',
-            // position: 'insideLeft',
             dx: -10,
             fontSize: 'clamp(0.75rem, 2vw, 1rem)',
           }}
-          tick={{ fontSize: 8 }}
-          interval={0}
-          // width={40}
+          tickSize={1}
+          {...CHART_Y_AXIS_STYLES}
         />
-        {/* Right Y-axis for weight */}
+
         <YAxis
           yAxisId='right'
           orientation='right'
+          tickSize={1}
           label={{
             value: 'Weight (kg)',
             angle: 90,
@@ -73,20 +70,9 @@ export const CaloriesWorkoutWeight = () => {
             dx: 10,
             fontSize: 'clamp(0.75rem, 2vw, 1rem)',
           }}
-          tick={{ fontSize: 8 }}
-          interval={0}
-          width={40}
+          {...CHART_Y_AXIS_STYLES}
         />
-        <Tooltip
-          contentStyle={{
-            fontSize: 'clamp(0.75rem, 1vw, 1rem)',
-            padding: 'clamp(4px, 1vw, 8px)',
-            color: '#333',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
-        />
+        <Tooltip {...CHART_TOOLTIP_STYLES} />
         <Legend
           wrapperStyle={{
             fontSize: 'clamp(0.75rem, 2vw, 1rem)',
@@ -98,16 +84,15 @@ export const CaloriesWorkoutWeight = () => {
           yAxisId='left'
           type='monotone'
           dataKey='netCalories'
-          stroke='#8884d8'
-          fill='#8884d8'
+          stroke='var(--data-violet)'
+          fill='var(--data-violet)'
           name='Calorie Balance'
         />
         {/* Bar chart for workout minutes */}
         <Bar
           yAxisId='left'
           dataKey='workoutMinutes'
-          barSize={20}
-          fill='#413ea0'
+          fill='var(--data-green)'
           name='Workout Minutes'
         />
         {/* Line chart for weight with secondary axis */}
@@ -115,7 +100,9 @@ export const CaloriesWorkoutWeight = () => {
           yAxisId='right'
           type='monotone'
           dataKey='weight'
-          stroke='#ff7300'
+          stroke='var(--data-red)'
+          fill='var(--data-red)'
+          strokeWidth={2}
           name='Weight'
         />
       </ComposedChart>

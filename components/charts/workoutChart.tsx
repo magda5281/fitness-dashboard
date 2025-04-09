@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 
 import type { Workout } from '@/types';
+import { CHART_LEGEND_STYLES } from '@/lib/constants/chartStyles';
 
 export const DailyWorkoutChart = ({ data }: { data: Workout | undefined }) => {
   // Select the day you want to display—for example, the first day.
@@ -22,17 +23,17 @@ export const DailyWorkoutChart = ({ data }: { data: Workout | undefined }) => {
     {
       name: 'Cardio',
       value: Math.min((data?.cardio / data?.targets.cardio) * 100, 100),
-      fill: '#8884d8',
+      fill: 'var(--data-red)',
     },
     {
       name: 'Strength',
       value: Math.min((data.strength / data.targets.strength) * 100, 100),
-      fill: '#82ca9d',
+      fill: 'var(--data-green)',
     },
     {
       name: 'Yoga',
       value: Math.min((data.yoga / data.targets.yoga) * 100, 100),
-      fill: '#ffc658',
+      fill: 'var(--data-yellow)',
     },
   ];
 
@@ -61,10 +62,7 @@ export const DailyWorkoutChart = ({ data }: { data: Workout | undefined }) => {
         />
         <Legend
           iconSize={10}
-          wrapperStyle={{
-            fontSize: 'clamp(0.75rem, 2vw, 1rem)',
-            padding: 'clamp(4px, 2vw, 8px)',
-          }}
+          wrapperStyle={{ ...CHART_LEGEND_STYLES.wrapperStyle }}
         />
         <Tooltip
           contentStyle={{

@@ -1,5 +1,6 @@
 'use client';
 
+import { CHART_LEGEND_STYLES } from '@/lib/constants/chartStyles';
 import {
   RadarChart,
   PolarGrid,
@@ -55,23 +56,18 @@ export const SleepEfficiency = ({
         <Radar
           name='Actual'
           dataKey='value'
-          stroke='#8884d8'
-          fill='#8884d8'
+          stroke='var(--data-violet)'
+          fill='var(--data-violet)'
           fillOpacity={0.6}
         />
         <Radar
           name='Ideal'
           dataKey='ideal'
-          stroke='#82ca9d'
-          fill='#82ca9d'
+          stroke='var(--data-green)'
+          fill='var(--data-green)'
           fillOpacity={0.3}
         />
-        <Legend
-          wrapperStyle={{
-            fontSize: 'clamp(0.75rem, 2vw, 1rem)',
-            padding: 'clamp(4px, 2vw, 8px)',
-          }}
-        />
+        <Legend wrapperStyle={{ ...CHART_LEGEND_STYLES.wrapperStyle }} />
       </RadarChart>
     </ResponsiveContainer>
   );

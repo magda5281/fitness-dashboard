@@ -1,5 +1,10 @@
 'use client';
 
+import {
+  CHART_TOOLTIP_STYLES,
+  CHART_X_AXIS_STYLES,
+  CHART_Y_AXIS_STYLES,
+} from '@/lib/constants/chartStyles';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { VO2Max } from '@/types';
 import { use } from 'react';
@@ -21,40 +26,24 @@ export const VO2MaxChart = ({ data }: { data: VO2Max }) => {
       <ScatterChart
         margin={{ top: 10, right: 10, left: 0, bottom: isMobile ? 10 : 20 }}
       >
-        <XAxis
-          dataKey='date'
-          name='Date'
-          tick={{ fontSize: 'clamp(0.5rem, 2vw, 0.75rem)' }}
-          interval={0}
-          minTickGap={0}
-          angle={-45}
-          textAnchor='end'
-        />
-        <YAxis
-          dataKey='value'
-          name='VO2 Max'
-          tick={{ fontSize: 8 }}
-          interval={0}
-          width={40}
-        />
+        <XAxis dataKey='date' name='Date' {...CHART_X_AXIS_STYLES} />
+        <YAxis dataKey='value' name='VO2 Max' {...CHART_Y_AXIS_STYLES} />
 
         {/* ZAxis can be used to vary the size of the dots,
             but here we set a static range if you don’t need it */}
         <ZAxis range={[60, 400]} />
         <Tooltip
           cursor={{ strokeDasharray: '3 3' }}
-          contentStyle={{
-            fontSize: 'clamp(0.75rem, 1vw, 1rem)',
-            padding: 'clamp(4px, 1vw, 8px)',
-            color: '#333',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
+          {...CHART_TOOLTIP_STYLES}
           formatter={(value: number, name: string) => [`${value} `, name]}
         />
 
-        <Scatter name='VO2 Max' data={data} fill='#8884d8' shape='diamond' />
+        <Scatter
+          name='VO2 Max'
+          data={data}
+          fill='var(--data-blue)'
+          shape='diamond'
+        />
       </ScatterChart>
     </ResponsiveContainer>
   );

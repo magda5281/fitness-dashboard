@@ -1,5 +1,9 @@
 'use client';
 
+import {
+  CHART_LEGEND_STYLES,
+  CHART_TOOLTIP_STYLES,
+} from '@/lib/constants/chartStyles';
 import { HeartRateZone } from '@/types';
 import {
   ResponsiveContainer,
@@ -11,7 +15,12 @@ import {
 } from 'recharts';
 
 export const HeartRateChart = ({ data }: { data: HeartRateZone }) => {
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+  const COLORS = [
+    'var(--data-blue)',
+    'var(--data-green)',
+    'var(--data-yellow)',
+    'var(--data-red)',
+  ];
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
     cx,
@@ -71,15 +80,7 @@ export const HeartRateChart = ({ data }: { data: HeartRateZone }) => {
               data.find((z) => z.name === name)?.maxBpm
             }bpm)`,
           ]}
-          contentStyle={{
-            fontSize: 'clamp(0.75rem, 1vw, 1rem)',
-            padding: 'clamp(4px, 1vw, 8px)',
-            color: '#333',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
-          //itemStyle={{ color: '#666' }} // Individual item text color
+          {...CHART_TOOLTIP_STYLES}
         />
         <Legend
           layout='vertical'
@@ -87,10 +88,7 @@ export const HeartRateChart = ({ data }: { data: HeartRateZone }) => {
           align='right'
           iconType='circle'
           iconSize={10}
-          wrapperStyle={{
-            fontSize: 'clamp(0.75rem, 2vw, 1rem)',
-            padding: 'clamp(4px, 2vw, 8px)',
-          }}
+          wrapperStyle={{ ...CHART_LEGEND_STYLES.wrapperStyle }}
         />
       </PieChart>
     </ResponsiveContainer>

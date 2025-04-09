@@ -27,12 +27,22 @@ export const fitnessData: FitnessData = {
       avgRestingHR: 62,
     },
     {
+      date: '2025-04-08',
+      zones: [
+        { name: 'Resting', value: 300, minBpm: 50, maxBpm: 70 },
+        { name: 'Fat Burn', value: 15, minBpm: 70, maxBpm: 120 },
+        { name: 'Cardio', value: 95, minBpm: 120, maxBpm: 150 },
+        { name: 'Peak', value: 40, minBpm: 150, maxBpm: 200 },
+      ],
+      avgRestingHR: 62,
+    },
+    {
       date: today,
       zones: [
-        { name: 'Resting', value: 320, minBpm: 50, maxBpm: 70 },
-        { name: 'Fat Burn', value: 145, minBpm: 70, maxBpm: 120 },
-        { name: 'Cardio', value: 85, minBpm: 120, maxBpm: 150 },
-        { name: 'Peak', value: 30, minBpm: 150, maxBpm: 200 },
+        { name: 'Resting', value: 220, minBpm: 50, maxBpm: 70 },
+        { name: 'Fat Burn', value: 100, minBpm: 70, maxBpm: 120 },
+        { name: 'Cardio', value: 65, minBpm: 120, maxBpm: 150 },
+        { name: 'Peak', value: 40, minBpm: 150, maxBpm: 200 },
       ],
       avgRestingHR: 55,
     },
@@ -104,7 +114,7 @@ export const fitnessData: FitnessData = {
       strength: 50,
       yoga: 50,
       unit: 'min',
-      targets: { cardio: 40, strength: 50, yoga: 60 },
+      targets: { cardio: 30, strength: 60, yoga: 20 },
     },
   ],
 

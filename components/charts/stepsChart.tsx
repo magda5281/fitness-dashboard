@@ -1,6 +1,10 @@
 'use client';
+import {
+  CHART_TOOLTIP_STYLES,
+  CHART_X_AXIS_STYLES,
+  CHART_Y_AXIS_STYLES,
+} from '@/lib/constants/chartStyles';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
-import { formatDate } from '@/lib/utils';
 import type { StepsData } from '@/types';
 
 import {
@@ -25,26 +29,10 @@ export function StepsChart({ data }: { data: StepsData }) {
         layout='horizontal'
       >
         <CartesianGrid strokeDasharray='3 3' />
-        <XAxis
-          dataKey='date'
-          tick={{ fontSize: 'clamp(0.5rem, 2vw, 0.75rem)' }}
-          interval={0}
-          minTickGap={0}
-          angle={-45}
-          textAnchor='end'
-        />
-        <YAxis tick={{ fontSize: 8 }} interval={0} width={40} />
-        <Tooltip
-          contentStyle={{
-            fontSize: 'clamp(0.75rem, 1vw, 1rem)',
-            padding: 'clamp(4px, 1vw, 8px)',
-            color: '#333',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
-        />
-        <Bar dataKey='steps' fill='#8884d8' radius={[4, 4, 0, 0]}>
+        <XAxis dataKey='date' {...CHART_X_AXIS_STYLES} />
+        <YAxis {...CHART_Y_AXIS_STYLES} />
+        <Tooltip {...CHART_TOOLTIP_STYLES} />
+        <Bar dataKey='steps' fill='var(--data-green)' radius={[4, 4, 0, 0]}>
           <LabelList
             dataKey='steps'
             position='top'
