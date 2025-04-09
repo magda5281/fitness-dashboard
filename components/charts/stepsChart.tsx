@@ -2,7 +2,7 @@
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { formatDate } from '@/lib/utils';
 import type { StepsData } from '@/types';
-import { useEffect, useState } from 'react';
+
 import {
   BarChart,
   Bar,
@@ -16,15 +16,11 @@ import {
 
 export function StepsChart({ data }: { data: StepsData }) {
   const isMobile = useIsMobile(768);
-  const formattedData = data.map((item) => ({
-    ...item,
-    date: formatDate(item.date),
-  }));
 
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <BarChart
-        data={formattedData}
+        data={data}
         margin={{ top: 10, right: 0, left: 0, bottom: isMobile ? 10 : 20 }}
         layout='horizontal'
       >
