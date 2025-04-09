@@ -7,6 +7,7 @@ import { AvatarIcon } from '@radix-ui/react-icons';
 import { Droplet, Flame, Footprints, Heart } from 'lucide-react';
 import { SleepEfficiency } from '@/components/charts/sleepEfficiency';
 import { AvgRestingHRChart } from '@/components/charts/avgRestingHRChart';
+import { SleepStagesChart } from '@/components/charts/sleepStagesChart';
 
 export default async function DashboardPage() {
   const fitnessData = await getFitnessData();
@@ -15,20 +16,42 @@ export default async function DashboardPage() {
   const lastSteps = currentSteps
     ? fitnessData.steps[fitnessData.steps.length - 2]
     : null;
+  const stepsData = fitnessData.steps.map((item) => ({
+    date: formatDate(item.date),
+    steps: item.steps,
+  }));
   const heartRateData = fitnessData.heartRateData;
   const currentHeartHealth = findByDate(heartRateData, today);
   const recentHeartHealth = currentHeartHealth
     ? fitnessData.heartRateData[heartRateData.length - 2]
     : null;
 
-  const avgRestingHRData = heartRateData.map((data) => ({
-    date: formatDate(data.date),
-    avgRestingHR: data.avgRestingHR,
+  const avgRestingHRData = heartRateData.map((item) => ({
+    date: formatDate(item.date),
+    avgRestingHR: item.avgRestingHR,
   }));
 
   const hydration = findByDate(fitnessData.hydration, today);
   const calories = findByDate(fitnessData.calories, today);
-  const sleepEfficiency = findByDate(fitnessData.sleepQuality, today);
+  const sleepData = fitnessData.sleepQuality;
+  const sleepEfficiency = findByDate(sleepData, today);
+  const sleepStagesData = sleepData.map((item) => {
+    // Start with default values
+    const transformed = {
+      date: formatDate(item.date),
+      awake: 0,
+      light: 0,
+      deep: 0,
+      rem: 0,
+    };
+
+    // Iterate over each stage and assign its minutes
+    item.stages.forEach((stageObj) => {
+      transformed[stageObj.stage] = stageObj.minutes;
+    });
+
+    return transformed;
+  });
 
   return (
     <main className='flex gap-4 min-h-screen flex-col  '>
@@ -89,7 +112,7 @@ export default async function DashboardPage() {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 '>
           <GenericCard title='Step Activity' className='col-span-1'>
             <div className='h-[200px] md:h-[300px]'>
-              <StepsChart data={fitnessData.steps} />
+              <StepsChart data={stepsData} />
             </div>
           </GenericCard>
 
@@ -120,6 +143,14 @@ export default async function DashboardPage() {
             <div className='h-[200px] md:h-[300px]'>
               <SleepEfficiency data={sleepEfficiency?.metrics} />
             </div>
+          </GenericCard>
+
+          <GenericCard
+            title='Sleep stages'
+            description='The length of REM or Deep sleep?'
+            className='col-span-1'
+          >
+            <SleepStagesChart data={sleepStagesData} />
           </GenericCard>
         </div>
       </div>
