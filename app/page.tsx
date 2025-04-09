@@ -8,6 +8,7 @@ import { Droplet, Flame, Footprints, Heart } from 'lucide-react';
 import { SleepEfficiency } from '@/components/charts/sleepEfficiency';
 import { AvgRestingHRChart } from '@/components/charts/avgRestingHRChart';
 import { SleepStagesChart } from '@/components/charts/sleepStagesChart';
+import { WeightChart } from '@/components/charts/weightChart';
 
 export default async function DashboardPage() {
   const fitnessData = await getFitnessData();
@@ -52,7 +53,17 @@ export default async function DashboardPage() {
 
     return transformed;
   });
+  // const weightTrend: [
+  //   { date: '2025-01-01'; value: 75.3; unit: 'kg' },
+  //   { date: yesterday; value: 74.1; unit: 'kg' },
+  //   { date: today; value: 73.2; unit: 'kg' }
+  // ];
 
+  const weightData = fitnessData.weightTrend.map((item) => ({
+    date: formatDate(item.date),
+    value: item.value,
+    unit: item.unit,
+  }));
   return (
     <main className='flex gap-4 min-h-screen flex-col  '>
       <div className='sticky top-0 z-50 bg-background p-4 md:p-6 lg:p-8 border-b'>
@@ -151,6 +162,13 @@ export default async function DashboardPage() {
             className='col-span-1'
           >
             <SleepStagesChart data={sleepStagesData} />
+          </GenericCard>
+          <GenericCard
+            title='Weight Trend'
+            description='Body weight over time'
+            className='col-span-1'
+          >
+            <WeightChart data={weightData} />
           </GenericCard>
         </div>
       </div>

@@ -74,7 +74,9 @@ export const fitnessData: FitnessData = {
   ],
 
   weightTrend: [
-    { date: '2023-01-01', value: 75.3, unit: 'kg' },
+    { date: '2025-01-01', value: 75.3, unit: 'kg' },
+    { date: '2025-02-01', value: 66.3, unit: 'kg' },
+    { date: '2025-03-01', value: 63.3, unit: 'kg' },
     { date: yesterday, value: 74.1, unit: 'kg' },
     { date: today, value: 73.2, unit: 'kg' },
   ],
