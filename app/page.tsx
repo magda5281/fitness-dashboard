@@ -70,31 +70,6 @@ export default async function DashboardPage() {
     date: formatDate(item.date),
   }));
 
-  const bodyFat = fitnessData.bodyFat;
-  console.log('bodyFat', bodyFat);
-  //which is
-  //  bodyFat: [
-  //  { name: 'Arms', size: 18.5 },
-  //         { name: 'Chest', size: 20.0 },
-  //         { name: 'Core', size: 22.1 },
-  //         { name: 'Legs', size: 15.0 },
-  //         { name: 'Back', size: 16.3 },
-  // ],
-  //the above needs to be made into
-
-  const bodyFatData = [
-    {
-      name: 'Body Fat',
-      children: [
-        { name: 'Arms', size: 18.5 },
-        { name: 'Chest', size: 20.0 },
-        { name: 'Core', size: 22.1 },
-        { name: 'Legs', size: 15.0 },
-        { name: 'Back', size: 16.3 },
-      ],
-    },
-  ];
-
   return (
     <main className='flex gap-4 min-h-screen flex-col  '>
       <div className='sticky top-0 z-50 bg-background p-4 md:p-6 lg:p-8 border-b'>
@@ -235,7 +210,7 @@ export default async function DashboardPage() {
             className='col-span-1'
           >
             <div className='h-[200px] md:h-[300px]'>
-              <BodyFatChart data={bodyFatData} />
+              <BodyFatChart data={fitnessData.bodyFat} />
             </div>
           </GenericCard>
         </div>

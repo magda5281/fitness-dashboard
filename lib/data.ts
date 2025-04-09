@@ -132,32 +132,10 @@ export const fitnessData: FitnessData = {
 
   bodyFat: [
     { name: 'Arms', value: 17 },
-    { name: 'Chest', value: 20 },
+    { name: 'Chest', value: 15 },
     { name: 'Core', value: 22 },
     { name: 'Legs', value: 16 },
-  ],
-
-  activityDistribution: [
-    {
-      name: 'Exercise',
-      unit: 'minutes',
-      children: [
-        {
-          name: 'Cardio',
-          children: [
-            { name: 'Running', value: 65 },
-            { name: 'Cycling', value: 35 },
-          ],
-        },
-        {
-          name: 'Strength',
-          children: [
-            { name: 'Upper Body', value: 40 },
-            { name: 'Lower Body', value: 60 },
-          ],
-        },
-      ],
-    },
+    { name: 'Back', value: 10.3 },
   ],
 };
 

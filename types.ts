@@ -79,25 +79,11 @@ export type VO2Max = {
 }[];
 // 9. Body Fat
 export type BodyFat = {
-  date: string; // ISO format
-  region: string; // body region
+  name: string;
   value: number; // percentage
-  unit: string; // percentage
 }[];
-// 10. Activity Distribution
-export type ActivityDistribution = {
-  name: string; // activity type
-  unit?: string; // optional unit
-  children: Array<{
-    name: string; // sub-activity type
-    value?: number; // optional value
-    children?: Array<{
-      name: string; // sub-sub-activity type
-      value: number; // value
-    }>;
-  }>;
-}[];
-// 11. Fitness Data
+
+// 10. Fitness Data
 
 export type FitnessData = {
   steps: StepsData;
@@ -109,5 +95,4 @@ export type FitnessData = {
   hydration: Hydration;
   vo2max: VO2Max;
   bodyFat: BodyFat;
-  activityDistribution: ActivityDistribution;
 };
