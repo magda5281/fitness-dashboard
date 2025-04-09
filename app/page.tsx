@@ -9,6 +9,7 @@ import { SleepEfficiency } from '@/components/charts/sleepEfficiency';
 import { AvgRestingHRChart } from '@/components/charts/avgRestingHRChart';
 import { SleepStagesChart } from '@/components/charts/sleepStagesChart';
 import { WeightChart } from '@/components/charts/weightChart';
+import { DailyWorkoutChart } from '@/components/charts/workoutChart';
 
 export default async function DashboardPage() {
   const fitnessData = await getFitnessData();
@@ -53,11 +54,7 @@ export default async function DashboardPage() {
 
     return transformed;
   });
-  // const weightTrend: [
-  //   { date: '2025-01-01'; value: 75.3; unit: 'kg' },
-  //   { date: yesterday; value: 74.1; unit: 'kg' },
-  //   { date: today; value: 73.2; unit: 'kg' }
-  // ];
+  const currentWorkout = findByDate(fitnessData.workouts, today);
 
   const weightData = fitnessData.weightTrend.map((item) => ({
     date: formatDate(item.date),
@@ -128,7 +125,7 @@ export default async function DashboardPage() {
           </GenericCard>
 
           <GenericCard
-            title='Current Heart Rate'
+            title='Current heart rate'
             description='Time in each HR zone'
             className='col-span-1'
           >
@@ -147,7 +144,7 @@ export default async function DashboardPage() {
           </GenericCard>
 
           <GenericCard
-            title='Sleep Efficiency'
+            title='Sleep efficiency'
             description='How well did you sleep?'
             className='col-span-1'
           >
@@ -161,14 +158,27 @@ export default async function DashboardPage() {
             description='The length of REM or Deep sleep?'
             className='col-span-1'
           >
-            <SleepStagesChart data={sleepStagesData} />
+            <div className='h-[200px] md:h-[300px]'>
+              <SleepStagesChart data={sleepStagesData} />
+            </div>
           </GenericCard>
           <GenericCard
-            title='Weight Trend'
+            title='Weight trend'
             description='Body weight over time'
             className='col-span-1'
           >
-            <WeightChart data={weightData} />
+            <div className='h-[200px] md:h-[300px]'>
+              <WeightChart data={weightData} />
+            </div>
+          </GenericCard>
+          <GenericCard
+            title='Daily workout'
+            description='% of  achieved target'
+            className='col-span-1'
+          >
+            <div className='h-[200px] md:h-[300px]'>
+              <DailyWorkoutChart data={currentWorkout} />
+            </div>
           </GenericCard>
         </div>
       </div>

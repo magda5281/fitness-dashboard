@@ -83,11 +83,28 @@ export const fitnessData: FitnessData = {
 
   workouts: [
     {
-      period: '2023-06-01/2023-06-07',
+      date: '2025-01-07',
       cardio: 120,
       strength: 90,
       yoga: 60,
-      unit: 'minutes',
+      unit: 'min',
+      targets: { cardio: 60, strength: 45, yoga: 30 },
+    },
+    {
+      date: '2025-01-08',
+      cardio: 20,
+      strength: 50,
+      yoga: 50,
+      unit: 'min',
+      targets: { cardio: 40, strength: 50, yoga: 60 },
+    },
+    {
+      date: today,
+      cardio: 20,
+      strength: 50,
+      yoga: 50,
+      unit: 'min',
+      targets: { cardio: 40, strength: 50, yoga: 60 },
     },
   ],
 

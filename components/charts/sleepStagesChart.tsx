@@ -31,7 +31,7 @@ export const SleepStagesChart = ({ data }: { data: SleepData }) => {
   };
 
   return (
-    <ResponsiveContainer width='100%' height={300}>
+    <ResponsiveContainer width='100%' height='100%'>
       <BarChart data={data} margin={{ top: 10, right: 0, left: 0, bottom: 10 }}>
         <XAxis
           dataKey='date'
@@ -50,7 +50,12 @@ export const SleepStagesChart = ({ data }: { data: SleepData }) => {
             borderRadius: '4px',
           }}
         />
-        <Legend />
+        <Legend
+          wrapperStyle={{
+            fontSize: 'clamp(0.75rem, 2vw, 1rem)',
+            padding: 'clamp(4px, 2vw, 8px)',
+          }}
+        />
         {/* Dynamically render Bar elements for each sleep stage */}
         {sleepStages.map((stage) => (
           <Bar

@@ -43,13 +43,19 @@ export type WeightTrend = {
   unit: string;
 }[];
 // 5. Workouts
-export type Workouts = {
-  period: string; // "YYYY-MM-DD/YYYY-MM-DD"
+export type Workout = {
+  date: string;
   cardio: number;
   strength: number;
   yoga: number;
-  unit: string;
-}[];
+  unit: 'min';
+  targets: {
+    cardio: number;
+    strength: number;
+    yoga: number;
+  };
+};
+export type Workouts = Workout[];
 // 6. Calories
 export type Calories = {
   date: string; // ISO format

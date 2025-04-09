@@ -21,7 +21,7 @@ export const WeightChart = ({
 }) => {
   const isMobile = useIsMobile(768);
   return (
-    <ResponsiveContainer width='100%' height={300}>
+    <ResponsiveContainer width='100%' height='100%'>
       <AreaChart
         data={data}
         margin={{ top: 10, right: 10, left: 0, bottom: isMobile ? 10 : 20 }}
