@@ -1,4 +1,5 @@
 import { FitnessData } from '@/types';
+import { findByDate, formatDate } from '@/lib/utils';
 const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
 const today = new Date().toISOString().split('T')[0];
 
@@ -155,13 +156,79 @@ const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 export async function getFitnessData(): Promise<FitnessData> {
   // Simulate API delay (500ms - 1.5s)
   await sleep(500 + Math.random() * 1000);
+  const random = Math.random();
 
   // Return mock data with 10% chance of error
-  if (Math.random() > 0.9) {
+  if (random > 0.9) {
     throw new Error('Failed to fetch fitness data');
   }
 
   return fitnessData;
+}
+
+// Get only KPI-related data
+export async function getKpiData() {
+  const data = await getFitnessData();
+  const today = new Date().toISOString().split('T')[0];
+
+  return {
+    steps: {
+      current: findByDate(data.steps, today),
+      last: data.steps[data.steps.length - 2],
+    },
+    heartRate: {
+      current: findByDate(data.heartRateData, today),
+      last: data.heartRateData[data.heartRateData.length - 2],
+    },
+    hydration: findByDate(data.hydration, today),
+    calories: findByDate(data.calories, today),
+  };
+}
+
+// Get data for charts
+export async function getChartsData() {
+  const data = await getFitnessData();
+  const today = new Date().toISOString().split('T')[0];
+  const heartRateData = data.heartRateData;
+
+  return {
+    stepsData: data.steps.map((item) => ({
+      date: formatDate(item.date),
+      steps: item.steps,
+    })),
+
+    avgRestingHRData: heartRateData.map((item) => ({
+      date: formatDate(item.date),
+      avgRestingHR: item.avgRestingHR,
+    })),
+    currentHeartHealth: findByDate(heartRateData, today),
+    sleepData: data.sleepQuality.map((item) => {
+      const transformed = {
+        date: formatDate(item.date),
+        awake: 0,
+        light: 0,
+        deep: 0,
+        rem: 0,
+      };
+
+      item.stages.forEach((stageObj) => {
+        transformed[stageObj.stage] = stageObj.minutes;
+      });
+      return transformed;
+    }),
+    weightData: data.weightTrend.map((item) => ({
+      date: formatDate(item.date),
+      value: item.value,
+      unit: item.unit,
+    })),
+    vo2MaxData: data.vo2max.map((item) => ({
+      ...item,
+      date: formatDate(item.date),
+    })),
+    currentWorkout: findByDate(data.workouts, today),
+    sleepEfficiency: findByDate(data.sleepQuality, today),
+    bodyFat: data.bodyFat,
+  };
 }
 
 // Alternative: Get specific chart data
