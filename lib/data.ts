@@ -120,14 +120,14 @@ export const fitnessData: FitnessData = {
   ],
 
   calories: [
-    { date: '2023-06-01', consumed: 2200, burned: 1900, unit: 'kcal' },
-    { date: '2023-06-02', consumed: 1800, burned: 2100, unit: 'kcal' },
+    { date: '2025-04-01', consumed: 2200, burned: 1900, unit: 'kcal' },
+    { date: '2025-04-02', consumed: 1800, burned: 2100, unit: 'kcal' },
     { date: today, consumed: 1800, burned: 2100, unit: 'kcal' },
   ],
 
   hydration: [
-    { date: '2023-06-01', current: 1.8, goal: 2.5, unit: 'liters' },
-    { date: '2023-06-02', current: 2.2, goal: 2.5, unit: 'liters' },
+    { date: '2025-04-01', current: 1.8, goal: 2.5, unit: 'liters' },
+    { date: '2025-04-02', current: 2.2, goal: 2.5, unit: 'liters' },
     { date: today, current: 2.2, goal: 2.5, unit: 'liters' },
   ],
 
