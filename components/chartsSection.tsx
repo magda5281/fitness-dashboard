@@ -33,11 +33,13 @@ interface ChartsSectionProps {
   sleepEfficiency: any;
   bodyFat: BodyFat;
   avgRestingHRData: { date: string; avgRestingHR: number }[];
-  currentHeartHealth: {
-    date: string;
-    zones: HeartRateZone;
-    avgRestingHR: number;
-  };
+  currentHeartHealth:
+    | {
+        date: string;
+        zones: HeartRateZone;
+        avgRestingHR: number;
+      }
+    | undefined;
 }
 export const ChartsSection = ({
   stepsData,
