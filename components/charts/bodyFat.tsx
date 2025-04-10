@@ -3,14 +3,14 @@
 import { CHART_TOOLTIP_STYLES } from '@/lib/constants/chartStyles';
 import { ResponsiveContainer, Treemap, Tooltip } from 'recharts';
 
-export const BodyFatChart = ({
+export default function BodyFatChart({
   data,
 }: {
   data: {
     name: string;
     value: number;
   }[];
-}) => {
+}) {
   const bodyFatData = [
     {
       name: 'Body Fat',
@@ -34,4 +34,4 @@ export const BodyFatChart = ({
       </Treemap>
     </ResponsiveContainer>
   );
-};
+}

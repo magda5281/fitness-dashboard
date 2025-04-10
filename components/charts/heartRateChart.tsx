@@ -14,7 +14,7 @@ import {
   Legend,
 } from 'recharts';
 
-export const HeartRateChart = ({ data }: { data: HeartRateZone }) => {
+export default function HeartRateChart({ data }: { data: HeartRateZone }) {
   const COLORS = [
     'var(--data-blue)',
     'var(--data-green)',
@@ -93,4 +93,4 @@ export const HeartRateChart = ({ data }: { data: HeartRateZone }) => {
       </PieChart>
     </ResponsiveContainer>
   );
-};
+}

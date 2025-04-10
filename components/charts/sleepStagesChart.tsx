@@ -22,7 +22,7 @@ type SleepData = {
   rem: number;
 }[];
 
-export const SleepStagesChart = ({ data }: { data: SleepData }) => {
+export default function SleepStagesChart({ data }: { data: SleepData }) {
   // Array of sleep stage keys
   const sleepStages = ['awake', 'light', 'deep', 'rem'];
 
@@ -64,4 +64,4 @@ export const SleepStagesChart = ({ data }: { data: SleepData }) => {
       </BarChart>
     </ResponsiveContainer>
   );
-};
+}

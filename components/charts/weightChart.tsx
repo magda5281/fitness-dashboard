@@ -15,7 +15,7 @@ import {
   Area,
 } from 'recharts';
 
-export const WeightChart = ({
+export default function WeightChart({
   data,
 }: {
   data: {
@@ -23,7 +23,7 @@ export const WeightChart = ({
     value: number;
     unit: string;
   }[];
-}) => {
+}) {
   const isMobile = useIsMobile(768);
   return (
     <ResponsiveContainer width='100%' height='100%'>
@@ -54,4 +54,4 @@ export const WeightChart = ({
       </AreaChart>
     </ResponsiveContainer>
   );
-};
+}

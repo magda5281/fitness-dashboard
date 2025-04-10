@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-export const SleepEfficiency = ({
+export default function SleepEfficiency({
   data,
 }: {
   data:
@@ -21,7 +21,7 @@ export const SleepEfficiency = ({
         ideal?: number;
       }[]
     | undefined;
-}) => {
+}) {
   // Custom tick renderer for displaying type and unit together
   const renderCustomTick = (props: any) => {
     const { x, y, payload, index } = props;
@@ -71,4 +71,4 @@ export const SleepEfficiency = ({
       </RadarChart>
     </ResponsiveContainer>
   );
-};
+}

@@ -1,35 +1,92 @@
+'use client';
 import dynamic from 'next/dynamic';
 import { ChartSkeleton } from './skeletons/chartSkeleton';
-import React from 'react';
-import type { StepsData } from '@/types';
+import { ComponentType } from 'react';
+import {
+  BodyFat,
+  HeartRateZone,
+  StepsData,
+  VO2Max,
+  WeightTrend,
+  Workout,
+} from '@/types';
 
-// Define a type alias for your chart components.
-type ChartComponents = {
-  StepsChart: React.FC<{ data: StepsData }>;
-  // Add additional charts here as needed.
+// Define prop types for each chart
+type ChartProps = {
+  StepsChart: { data: StepsData };
+  DailyWorkoutChart: { data: Workout | undefined };
+  HeartRateChart: { data: HeartRateZone };
+  SleepEfficiency: {
+    data:
+      | {
+          type: 'duration' | 'efficiency' | 'latency';
+          value: number;
+          unit: string;
+          ideal?: number;
+        }[]
+      | undefined;
+  };
+  SleepStagesChart: {
+    data: {
+      date: string;
+      awake: number;
+      light: number;
+      deep: number;
+      rem: number;
+    }[];
+  };
+  AvgRestingHRChart: {
+    data: {
+      date: string;
+      avgRestingHR: number;
+    }[];
+  };
+  WeightChart: { data: WeightTrend };
+  VO2MaxChart: { data: VO2Max };
+  BodyFatChart: { data: BodyFat };
+  // Add other chart props here
 };
 
-// Use an explicit type assertion so that TS knows the dynamically imported
-// component is a React.FC<{ data: StepsData }>.
-// Note: We chain a `.then(mod => mod.default)` so that we're returning the default export.
-const chartComponents: ChartComponents = {
-  StepsChart: dynamic(
-    () => import('./charts/stepsChart').then((mod) => mod.default),
-    { loading: () => <ChartSkeleton /> }
-  ) as React.FC<{ data: StepsData }>,
-  // You can add additional charts in a similar way:
-  // DailyWorkoutChart: dynamic(
-  //   () =>
-  //     import('./charts/workoutChart').then((mod) => mod.DailyWorkoutChart),
-  //   { loading: () => <ChartSkeleton /> }
-  // ) as React.FC<{ data: Workout | undefined }>,
+// Define chart names
+type ChartName = keyof ChartProps;
+
+// Define chart components
+const chartComponents: {
+  [K in ChartName]: ComponentType<ChartProps[K]>;
+} = {
+  StepsChart: dynamic(() => import('./charts/stepsChart'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  DailyWorkoutChart: dynamic(() => import('./charts/workoutChart'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  HeartRateChart: dynamic(() => import('./charts/heartRateChart'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  SleepEfficiency: dynamic(() => import('./charts/sleepEfficiency'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  SleepStagesChart: dynamic(() => import('./charts/sleepStagesChart'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  AvgRestingHRChart: dynamic(() => import('./charts/avgRestingHRChart'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  WeightChart: dynamic(() => import('./charts/weightChart'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  VO2MaxChart: dynamic(() => import('./charts/VO2MaxChart'), {
+    loading: () => <ChartSkeleton />,
+  }),
+  BodyFatChart: dynamic(() => import('./charts/bodyFat'), {
+    loading: () => <ChartSkeleton />,
+  }),
 };
 
-// Now make LazyChart generic over keys of ChartComponents to infer prop types.
-export function LazyChart<K extends keyof ChartComponents>({
+export function LazyChart<T extends ChartName>({
   name,
   ...props
-}: { name: K } & React.ComponentProps<ChartComponents[K]>) {
-  const Chart = chartComponents[name];
-  return <Chart {...props} />;
+}: { name: T } & ChartProps[T]) {
+  const Chart = chartComponents[name] as ComponentType<ChartProps[T]>;
+  return <Chart {...(props as ChartProps[T])} />;
 }

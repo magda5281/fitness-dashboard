@@ -19,7 +19,7 @@ import {
   Legend,
 } from 'recharts';
 
-export const VO2MaxChart = ({ data }: { data: VO2Max }) => {
+export default function VO2MaxChart({ data }: { data: VO2Max }) {
   const isMobile = useIsMobile(768);
   return (
     <ResponsiveContainer width='100%' height='100%'>
@@ -47,4 +47,4 @@ export const VO2MaxChart = ({ data }: { data: VO2Max }) => {
       </ScatterChart>
     </ResponsiveContainer>
   );
-};
+}

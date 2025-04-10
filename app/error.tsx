@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect } from 'react';
-
+//TODO:reset button is not working
 export default function Error({
   error,
   reset,

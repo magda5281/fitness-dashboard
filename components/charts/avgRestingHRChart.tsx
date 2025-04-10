@@ -15,14 +15,14 @@ import {
   CHART_X_AXIS_STYLES,
   CHART_Y_AXIS_STYLES,
 } from '@/lib/constants/chartStyles';
-export const AvgRestingHRChart = ({
+export default function AvgRestingHRChart({
   data,
 }: {
   data: {
     date: string;
     avgRestingHR: number;
   }[];
-}) => {
+}) {
   const isMobile = useIsMobile(768);
 
   return (
@@ -44,4 +44,4 @@ export const AvgRestingHRChart = ({
       </LineChart>
     </ResponsiveContainer>
   );
-};
+}

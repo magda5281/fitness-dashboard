@@ -1,15 +1,6 @@
-import { AvgRestingHRChart } from './charts/avgRestingHRChart';
-import { BodyFatChart } from './charts/bodyFat';
 import { CaloriesWorkoutWeight } from './charts/caloriesWorkoutWeight';
-import { HeartRateChart } from './charts/heartRateChart';
-import { SleepEfficiency } from './charts/sleepEfficiency';
-import { SleepStagesChart } from './charts/sleepStagesChart';
-import StepsChart from './charts/stepsChart';
-import { VO2MaxChart } from './charts/VO2MaxChart';
-import { WeightChart } from './charts/weightChart';
-import { DailyWorkoutChart } from './charts/workoutChart';
 import { GenericCard } from './genericCard';
-
+import { LazyChart } from './lazyLoading';
 import {
   BodyFat,
   HeartRateZone,
@@ -60,7 +51,7 @@ export const ChartsSection = ({
         className='col-span-1 '
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <DailyWorkoutChart data={currentWorkout} />
+          <LazyChart name='DailyWorkoutChart' data={currentWorkout} />
         </div>
       </GenericCard>
       <GenericCard
@@ -69,7 +60,8 @@ export const ChartsSection = ({
         className='col-span-1 '
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <SleepEfficiency data={sleepEfficiency?.metrics} />
+          {/* <SleepEfficiency data={sleepEfficiency?.metrics} /> */}
+          <LazyChart name='SleepEfficiency' data={sleepEfficiency?.metrics} />
         </div>
       </GenericCard>
       <GenericCard
@@ -78,12 +70,15 @@ export const ChartsSection = ({
         className='col-span-1'
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <HeartRateChart data={currentHeartHealth?.zones ?? []} />
+          <LazyChart
+            name='HeartRateChart'
+            data={currentHeartHealth?.zones ?? []}
+          />
         </div>
       </GenericCard>
       <GenericCard title='Step activity' className='col-span-1'>
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <StepsChart data={stepsData} />
+          <LazyChart name='StepsChart' data={stepsData} />
         </div>
       </GenericCard>
       <GenericCard
@@ -92,7 +87,7 @@ export const ChartsSection = ({
         className='col-span-1'
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <AvgRestingHRChart data={avgRestingHRData ?? []} />
+          <LazyChart name='AvgRestingHRChart' data={avgRestingHRData ?? []} />
         </div>
       </GenericCard>
       <GenericCard
@@ -101,7 +96,7 @@ export const ChartsSection = ({
         className='col-span-1'
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <SleepStagesChart data={sleepData} />
+          <LazyChart name='SleepStagesChart' data={sleepData} />
         </div>
       </GenericCard>
       <GenericCard
@@ -110,7 +105,7 @@ export const ChartsSection = ({
         className='col-span-1'
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <WeightChart data={weightData} />
+          <LazyChart name='WeightChart' data={weightData} />
         </div>
       </GenericCard>
       <GenericCard
@@ -119,7 +114,7 @@ export const ChartsSection = ({
         className='col-span-1'
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <VO2MaxChart data={vo2MaxData} />
+          <LazyChart name='VO2MaxChart' data={vo2MaxData} />
         </div>
       </GenericCard>
       <GenericCard
@@ -137,7 +132,7 @@ export const ChartsSection = ({
         className='col-span-1'
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          <BodyFatChart data={bodyFat} />
+          <LazyChart name='BodyFatChart' data={bodyFat} />
         </div>
       </GenericCard>
     </div>

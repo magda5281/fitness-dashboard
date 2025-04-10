@@ -11,7 +11,11 @@ import {
 import type { Workout } from '@/types';
 import { CHART_LEGEND_STYLES } from '@/lib/constants/chartStyles';
 
-export const DailyWorkoutChart = ({ data }: { data: Workout | undefined }) => {
+export default function DailyWorkoutChart({
+  data,
+}: {
+  data: Workout | undefined;
+}) {
   // Select the day you want to display—for example, the first day.
 
   // Calculate the percentage of the target achieved for each workout type.
@@ -80,4 +84,4 @@ export const DailyWorkoutChart = ({ data }: { data: Workout | undefined }) => {
       </RadialBarChart>
     </ResponsiveContainer>
   );
-};
+}
