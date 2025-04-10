@@ -50,7 +50,6 @@ The dashboard adapts seamlessly across desktop, tablet, and mobile devices using
 
 - **Modular Code Base:**  
    Well-organized component structure with reusable UI components (e.g., GenericCard) and charts, making the code clean, maintainable, and scalable.
-  TODO: create reusable chart components for all types of charts that receive data and configuration as
 
 ## Getting Started
 
