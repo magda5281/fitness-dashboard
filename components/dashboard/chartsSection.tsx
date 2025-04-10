@@ -62,8 +62,8 @@ export const ChartsSection = ({
   currentHeartHealth,
 }: ChartsSectionProps) => {
   return (
-    <ScrollArea className='max-h-[calc(100vh-350px)] overflow-y-auto w-full rounded-md border'>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 p-4'>
+    <ScrollArea className='max-h-[calc(100vh-350px)] overflow-y-auto w-full rounded-lg border shadow-2xl'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 p-2 md:p-4'>
         <GenericCard
           title='Daily workout'
           description='% of achieved target'

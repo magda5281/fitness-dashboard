@@ -17,7 +17,7 @@ export function GenericCard({
 }: DashboardCardProps) {
   return (
     <Card
-      className={cn('p-3 sm:p-4 md:p-5 gap-2 md:gap-4', className)}
+      className={cn('p-3 sm:p-4 md:p-5 gap-2 md:gap-4 shadow-xl', className)}
       {...props}
     >
       <CardHeader className='p-0'>

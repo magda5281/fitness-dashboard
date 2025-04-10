@@ -39,6 +39,7 @@ The dashboard adapts seamlessly across desktop, tablet, and mobile devices using
 - **Mobile-first** approach
 - Breakpoints: `sm:640px`, `md:768px`, `lg:1024px`, `xl:1280px`
 - Dynamic chart resizing
+- Fluid typography using clamp()
 
 - **Dynamic Imports & Code Splitting:**  
   Uses Next.js dynamic imports to lazily load heavy chart components, improving initial load performance and optimizing user experience with a custom loading skeleton.
