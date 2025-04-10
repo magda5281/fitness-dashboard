@@ -17,6 +17,7 @@ A responsive fitness tracking dashboard built with Next.js featuring 10+ data vi
 
 - **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Shadcn**: [Shadcn component library](https://ui.shadcn.com/)
 - **Charts**: [Recharts](https://recharts.org/)
 - **Types**: [TypeScript](https://www.typescriptlang.org/)
 
@@ -38,7 +39,6 @@ The dashboard adapts seamlessly across desktop, tablet, and mobile devices using
 - **Mobile-first** approach
 - Breakpoints: `sm:640px`, `md:768px`, `lg:1024px`, `xl:1280px`
 - Dynamic chart resizing
-- TODO: dropdown navigation menu on profile icon click
 
 - **Dynamic Imports & Code Splitting:**  
   Uses Next.js dynamic imports to lazily load heavy chart components, improving initial load performance and optimizing user experience with a custom loading skeleton.
