@@ -11,12 +11,6 @@ export default function BodyFatChart({
     value: number;
   }[];
 }) {
-  const bodyFatData = [
-    {
-      name: 'Body Fat',
-      children: data,
-    },
-  ];
   return (
     <ResponsiveContainer width='100%' height='100%'>
       <Treemap
@@ -25,11 +19,11 @@ export default function BodyFatChart({
         nameKey='name'
         aspectRatio={4 / 3}
         stroke='#fff'
-        fill='#8884d8'
+        fill='var(--data-violet)'
       >
         <Tooltip
           {...CHART_TOOLTIP_STYLES}
-          formatter={(value: number, name: string, props: any) => ` ${value}%`}
+          formatter={(value: number) => ` ${value}%`}
         />
       </Treemap>
     </ResponsiveContainer>

@@ -29,7 +29,6 @@ export default function HeartRateChart({ data }: { data: HeartRateZone }) {
     innerRadius,
     outerRadius,
     percent,
-    index,
   }: {
     cx: number;
     cy: number;
@@ -69,7 +68,7 @@ export default function HeartRateChart({ data }: { data: HeartRateZone }) {
           dataKey='value'
           label={renderCustomizedLabel}
         >
-          {data?.map((entry, index) => (
+          {data?.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>

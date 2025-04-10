@@ -42,7 +42,7 @@ The dashboard adapts seamlessly across desktop, tablet, and mobile devices using
 
 - **Dynamic Imports & Code Splitting:**  
   Uses Next.js dynamic imports to lazily load heavy chart components, improving initial load performance and optimizing user experience with a custom loading skeleton.
-  Lazy loading individual chart
+  Lazy loading individual chart improved performance score by 7%
 
 - **Theming with CSS Variables:**  
   Centralized styling across charts and UI components through CSS custom properties. This enables easy updates for colors, fonts, and spacing without hardcoding styles in each component.

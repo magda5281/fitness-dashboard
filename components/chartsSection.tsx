@@ -7,6 +7,7 @@ import {
   StepsData,
   VO2Max,
   WeightTrend,
+  Workout,
 } from '@/types';
 
 interface ChartsSectionProps {
@@ -20,8 +21,15 @@ interface ChartsSectionProps {
   }[];
   weightData: WeightTrend;
   vo2MaxData: VO2Max;
-  currentWorkout: any;
-  sleepEfficiency: any;
+  currentWorkout: Workout;
+  sleepEfficiency:
+    | {
+        type: 'duration' | 'efficiency' | 'latency';
+        value: number;
+        unit: string;
+        ideal?: number;
+      }[]
+    | undefined;
   bodyFat: BodyFat;
   avgRestingHRData: { date: string; avgRestingHR: number }[];
   currentHeartHealth:

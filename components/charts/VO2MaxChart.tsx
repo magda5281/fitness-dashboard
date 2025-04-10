@@ -7,7 +7,6 @@ import {
 } from '@/lib/constants/chartStyles';
 import { useIsMobile } from '@/lib/hooks/useIsMobile';
 import { VO2Max } from '@/types';
-import { use } from 'react';
 import {
   ResponsiveContainer,
   ScatterChart,
@@ -16,7 +15,6 @@ import {
   YAxis,
   ZAxis,
   Tooltip,
-  Legend,
 } from 'recharts';
 
 export default function VO2MaxChart({ data }: { data: VO2Max }) {

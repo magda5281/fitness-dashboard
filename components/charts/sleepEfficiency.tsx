@@ -9,6 +9,14 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import type { TickItem } from 'recharts/types/util/types';
+
+type CustomTickProps = {
+  x?: number;
+  y?: number;
+  payload: TickItem;
+  index: number;
+};
 
 export default function SleepEfficiency({
   data,
@@ -23,7 +31,7 @@ export default function SleepEfficiency({
     | undefined;
 }) {
   // Custom tick renderer for displaying type and unit together
-  const renderCustomTick = (props: any) => {
+  const renderCustomTick = (props: CustomTickProps) => {
     const { x, y, payload, index } = props;
     // Get the corresponding unit from the data array
     // Make sure `data` is available in this scope (from props)

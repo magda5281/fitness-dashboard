@@ -151,17 +151,17 @@ export const fitnessData: FitnessData = {
 };
 
 // Simulate network delay (optional)
-const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+// const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function getFitnessData(): Promise<FitnessData> {
   // Simulate API delay (500ms - 1.5s)
-  await sleep(500 + Math.random() * 1000);
-  const random = Math.random();
+  // await sleep(500 + Math.random() * 1000);
+  // const random = Math.random();
 
   // Return mock data with 10% chance of error
-  if (random > 0.9) {
-    throw new Error('Failed to fetch fitness data');
-  }
+  // if (random > 0.9) {
+  //   throw new Error('Failed to fetch fitness data');
+  // }
 
   return fitnessData;
 }

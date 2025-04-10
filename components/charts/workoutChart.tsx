@@ -9,24 +9,34 @@ import {
 } from 'recharts';
 
 import type { Workout } from '@/types';
-import { CHART_LEGEND_STYLES } from '@/lib/constants/chartStyles';
+import {
+  ValueType,
+  NameType,
+} from 'recharts/types/component/DefaultTooltipContent';
+import {
+  CHART_LEGEND_STYLES,
+  CHART_TOOLTIP_STYLES,
+} from '@/lib/constants/chartStyles';
+
+interface RadialDataItem {
+  name: string;
+  value: number;
+  fill: string;
+}
 
 export default function DailyWorkoutChart({
   data,
 }: {
   data: Workout | undefined;
 }) {
-  // Select the day you want to display—for example, the first day.
-
-  // Calculate the percentage of the target achieved for each workout type.
-  // We cap the value at 100 (i.e. 100%) for gauge purposes.
   if (!data) {
-    return <div>No workout data available </div>;
+    return <div>No workout data available</div>;
   }
-  const radialData = [
+
+  const radialData: RadialDataItem[] = [
     {
       name: 'Cardio',
-      value: Math.min((data?.cardio / data?.targets.cardio) * 100, 100),
+      value: Math.min((data.cardio / data.targets.cardio) * 100, 100),
       fill: 'var(--data-red)',
     },
     {
@@ -69,16 +79,11 @@ export default function DailyWorkoutChart({
           wrapperStyle={{ ...CHART_LEGEND_STYLES.wrapperStyle }}
         />
         <Tooltip
-          contentStyle={{
-            fontSize: 'clamp(0.75rem, 1vw, 1rem)',
-            padding: 'clamp(4px, 1vw, 8px)',
-            color: '#333',
-            backgroundColor: '#fff',
-            border: '1px solid #ddd',
-            borderRadius: '4px',
-          }}
-          formatter={(value: number, name: string, props: any) => {
-            return [`${value.toFixed(0)} % `, `${props?.payload?.name} `];
+          {...CHART_TOOLTIP_STYLES}
+          formatter={(value: ValueType, name: NameType, entry: any) => {
+            // Type assertion since we know our data structure
+            const payload = entry.payload as RadialDataItem;
+            return [`${Number(value).toFixed(0)} %`, payload.name];
           }}
         />
       </RadialBarChart>
