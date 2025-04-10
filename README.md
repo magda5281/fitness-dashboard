@@ -1,6 +1,6 @@
 # Fitness Analytics Dashboard
 
-[![Live Demo](https://img.shields.io/badge/demo-vercel-blue)](https://your-vercel-link.vercel.app)
+[![Live Demo](https://img.shields.io/badge/demo-vercel-blue)](https://fitness-dashboard-orpin.vercel.app/)
 [![GitHub](https://img.shields.io/badge/source-github-black)](https://github.com/magda5281/fitness-dashboard)
 
 A responsive fitness tracking dashboard built with Next.js featuring 10+ data visualizations.
