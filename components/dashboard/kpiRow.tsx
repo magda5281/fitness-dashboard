@@ -1,6 +1,6 @@
 import { Footprints, Heart, Droplet, Flame } from 'lucide-react';
 import React from 'react';
-import { GenericCard } from './genericCard';
+import { GenericCard } from '../genericCard';
 
 interface KpiRowProps {
   steps: {

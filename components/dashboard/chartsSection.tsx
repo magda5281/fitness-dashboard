@@ -1,6 +1,6 @@
-import { CaloriesWorkoutWeight } from './charts/caloriesWorkoutWeight';
-import { GenericCard } from './genericCard';
-import { LazyChart } from './lazyLoading';
+import { CaloriesWorkoutWeight } from '../charts/caloriesWorkoutWeight';
+import { GenericCard } from '../genericCard';
+import { LazyChart } from '../charts/lazyLoading';
 import {
   BodyFat,
   HeartRateZone,

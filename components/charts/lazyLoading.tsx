@@ -1,6 +1,6 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { ChartSkeleton } from './skeletons/chartSkeleton';
+import { ChartSkeleton } from '../skeletons/chartSkeleton';
 import { ComponentType } from 'react';
 import {
   BodyFat,
@@ -54,31 +54,31 @@ type ChartName = keyof ChartProps;
 const chartComponents: {
   [K in ChartName]: ComponentType<ChartProps[K]>;
 } = {
-  StepsChart: dynamic(() => import('./charts/stepsChart'), {
+  StepsChart: dynamic(() => import('./stepsChart'), {
     loading: () => <ChartSkeleton />,
   }),
-  DailyWorkoutChart: dynamic(() => import('./charts/workoutChart'), {
+  DailyWorkoutChart: dynamic(() => import('./workoutChart'), {
     loading: () => <ChartSkeleton />,
   }),
-  HeartRateChart: dynamic(() => import('./charts/heartRateChart'), {
+  HeartRateChart: dynamic(() => import('./heartRateChart'), {
     loading: () => <ChartSkeleton />,
   }),
-  SleepEfficiency: dynamic(() => import('./charts/sleepEfficiency'), {
+  SleepEfficiency: dynamic(() => import('./sleepEfficiency'), {
     loading: () => <ChartSkeleton />,
   }),
-  SleepStagesChart: dynamic(() => import('./charts/sleepStagesChart'), {
+  SleepStagesChart: dynamic(() => import('./sleepStagesChart'), {
     loading: () => <ChartSkeleton />,
   }),
-  AvgRestingHRChart: dynamic(() => import('./charts/avgRestingHRChart'), {
+  AvgRestingHRChart: dynamic(() => import('./avgRestingHRChart'), {
     loading: () => <ChartSkeleton />,
   }),
-  WeightChart: dynamic(() => import('./charts/weightChart'), {
+  WeightChart: dynamic(() => import('./weightChart'), {
     loading: () => <ChartSkeleton />,
   }),
-  VO2MaxChart: dynamic(() => import('./charts/VO2MaxChart'), {
+  VO2MaxChart: dynamic(() => import('./VO2MaxChart'), {
     loading: () => <ChartSkeleton />,
   }),
-  BodyFatChart: dynamic(() => import('./charts/bodyFat'), {
+  BodyFatChart: dynamic(() => import('./bodyFat'), {
     loading: () => <ChartSkeleton />,
   }),
 };

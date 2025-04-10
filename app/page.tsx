@@ -1,6 +1,6 @@
 import { getChartsData, getKpiData } from '@/lib/data';
-import { KpiRow } from '@/components/kpiRow';
-import { ChartsSection } from '@/components/chartsSection';
+import { KpiRow } from '@/components/dashboard/kpiRow';
+import { ChartsSection } from '@/components/dashboard/chartsSection';
 
 export default async function DashboardPage() {
   const [kpiData, chartsData] = await Promise.all([

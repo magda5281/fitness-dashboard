@@ -190,7 +190,6 @@ export async function getChartsData() {
   const data = await getFitnessData();
   const today = new Date().toISOString().split('T')[0];
   const heartRateData = data.heartRateData;
-  console.log(data.sleepQuality);
   return {
     stepsData: data.steps.map((item) => ({
       date: formatDate(item.date),
