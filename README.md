@@ -51,6 +51,32 @@ The dashboard adapts seamlessly across desktop, tablet, and mobile devices using
 - **Modular Code Base:**  
    Well-organized component structure with reusable UI components (e.g., GenericCard) and charts, making the code clean, maintainable, and scalable.
 
+## Assumptions & Design Decisions
+
+- **Static Data:**
+  Used mock fitness data instead of connecting to APIs (e.g., Fitbit/Apple Health) to focus on visualization implementation.
+
+- **Authentication Scope:**
+  Omitted login/logout functionality as the task emphasized dashboard visualizations over user management.
+
+- **Error Handling:**
+  Implemented generic error.tsx for uncaught exceptions but skipped edge-case handling (e.g., empty data states for charts).
+
+- **Performance Optimizations:**
+
+Lighthouse-tested with simulated mobile/desktop conditions
+
+Lazy-loaded charts via dynamic() imports
+
+Did not implement advanced caching (e.g., React Query) due to static data
+
+- **Responsiveness:**
+
+  Prioritized mobile-first layouts but assumed typical viewport ranges (≥320px width) without handling ultra-low-DPI devices.
+
+- **Testing:**
+  Manual cross-browser testing (Chrome/Firefox/Safari) but omitted unit tests due to time constraints.
+
 ## Getting Started
 
 1. Clone repository:
