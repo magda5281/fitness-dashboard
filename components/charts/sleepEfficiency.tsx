@@ -12,8 +12,8 @@ import {
 import type { TickItem } from 'recharts/types/util/types';
 
 type CustomTickProps = {
-  x?: number;
-  y?: number;
+  x: number;
+  y: number;
   payload: TickItem;
   index: number;
 };

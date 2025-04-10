@@ -21,14 +21,23 @@ interface ChartsSectionProps {
   }[];
   weightData: WeightTrend;
   vo2MaxData: VO2Max;
-  currentWorkout: Workout;
+  currentWorkout?: Workout;
   sleepEfficiency:
     | {
-        type: 'duration' | 'efficiency' | 'latency';
-        value: number;
-        unit: string;
-        ideal?: number;
-      }[]
+        date: string;
+        startTime: string;
+        endTime: string;
+        stages: {
+          stage: 'awake' | 'light' | 'deep' | 'rem';
+          minutes: number;
+        }[];
+        metrics: {
+          type: 'duration' | 'efficiency' | 'latency';
+          value: number;
+          unit: string;
+          ideal?: number;
+        }[];
+      }
     | undefined;
   bodyFat: BodyFat;
   avgRestingHRData: { date: string; avgRestingHR: number }[];
@@ -68,7 +77,6 @@ export const ChartsSection = ({
         className='col-span-1 '
       >
         <div className='h-[200px] sm:h-[220px] md:h-[260px] lg:h-[300px]'>
-          {/* <SleepEfficiency data={sleepEfficiency?.metrics} /> */}
           <LazyChart name='SleepEfficiency' data={sleepEfficiency?.metrics} />
         </div>
       </GenericCard>

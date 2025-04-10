@@ -7,11 +7,11 @@ import {
   Legend,
   Tooltip,
 } from 'recharts';
-
 import type { Workout } from '@/types';
 import {
   ValueType,
   NameType,
+  Payload,
 } from 'recharts/types/component/DefaultTooltipContent';
 import {
   CHART_LEGEND_STYLES,
@@ -63,9 +63,7 @@ export default function DailyWorkoutChart({
         endAngle={-270}
       >
         <RadialBar
-          minAngle={15}
           background
-          clockWise
           dataKey='value'
           label={{
             fontSize: 'clamp(0.5rem, 2vw, 0.75rem)',
@@ -80,10 +78,15 @@ export default function DailyWorkoutChart({
         />
         <Tooltip
           {...CHART_TOOLTIP_STYLES}
-          formatter={(value: ValueType, name: NameType, entry: any) => {
-            // Type assertion since we know our data structure
-            const payload = entry.payload as RadialDataItem;
-            return [`${Number(value).toFixed(0)} %`, payload.name];
+          formatter={(
+            value: ValueType,
+            name: NameType,
+            entry: Payload<ValueType, NameType>
+          ) => {
+            return [
+              `${Number(value).toFixed(0)}%`,
+              entry.payload?.name || name,
+            ];
           }}
         />
       </RadialBarChart>
