@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fitness Analytics Dashboard
+
+[![Live Demo](https://img.shields.io/badge/demo-vercel-blue)](https://your-vercel-link.vercel.app)
+[![GitHub](https://img.shields.io/badge/source-github-black)](https://github.com/magda5281/fitness-dashboard)
+
+A responsive fitness tracking dashboard built with Next.js featuring 10+ data visualizations.
+
+## Features
+
+✅ **10+ Interactive Charts**  
+✅ **Fully Responsive Design**  
+✅ **Modern UI with Tailwind CSS**  
+✅ **Type-Safe Codebase**  
+✅ **Optimized Performance**
+
+## Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Types**: [TypeScript](https://www.typescriptlang.org/)
+
+### Data Visualization
+
+| Chart Type                | Component               | Purpose                 |
+| ------------------------- | ----------------------- | ----------------------- |
+| Line Chart                | `StepsChart`            | Daily step trends       |
+| Pie Chart                 | `HeartRateChart`        | HR zone distribution    |
+| Bar Chart                 | `SleepStagesChart`      | Sleep cycle analysis    |
+| Area Chart                | `VO2MaxChart`           | Cardio fitness progress |
+| Scatter Plot              | `CaloriesWorkoutWeight` | Correlation analysis    |
+| ...plus 5 more variations |                         |                         |
+
+### Responsive Design
+
+The dashboard adapts seamlessly across desktop, tablet, and mobile devices using Tailwind CSS.
+
+- **Mobile-first** approach
+- Breakpoints: `sm:640px`, `md:768px`, `lg:1024px`, `xl:1280px`
+- Dynamic chart resizing
+- TODO: dropdown navigation menu on profile icon click
+
+- **Dynamic Imports & Code Splitting:**  
+  Uses Next.js dynamic imports to lazily load heavy chart components, improving initial load performance and optimizing user experience with a custom loading skeleton.
+  Lazy loading individual chart - WIP
+
+- **Theming with CSS Variables:**  
+  Centralized styling across charts and UI components through CSS custom properties. This enables easy updates for colors, fonts, and spacing without hardcoding styles in each component.
+
+- **Modular Code Base:**  
+   Well-organized component structure with reusable UI components (e.g., GenericCard) and charts, making the code clean, maintainable, and scalable.
+  TODO: create reusable chart components for all types of charts that receive data and configuration as
 
 ## Getting Started
 
-First, run the development server:
+1. Clone repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/magda5281/fitness-dashboard
+
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

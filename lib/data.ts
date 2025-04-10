@@ -232,9 +232,9 @@ export async function getChartsData() {
 }
 
 // Alternative: Get specific chart data
-export async function getChartData<T extends keyof FitnessData>(
-  chart: T
-): Promise<FitnessData[T]> {
-  await sleep(300);
-  return fitnessData[chart];
-}
+// export async function getChartData<T extends keyof FitnessData>(
+//   chart: T
+// ): Promise<FitnessData[T]> {
+//   await sleep(300);
+//   return fitnessData[chart];
+// }

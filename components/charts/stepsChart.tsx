@@ -18,7 +18,7 @@ import {
   LabelList,
 } from 'recharts';
 
-export function StepsChart({ data }: { data: StepsData }) {
+export default function StepsChart({ data }: { data: StepsData }) {
   const isMobile = useIsMobile(768);
 
   return (

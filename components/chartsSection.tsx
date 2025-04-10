@@ -4,7 +4,7 @@ import { CaloriesWorkoutWeight } from './charts/caloriesWorkoutWeight';
 import { HeartRateChart } from './charts/heartRateChart';
 import { SleepEfficiency } from './charts/sleepEfficiency';
 import { SleepStagesChart } from './charts/sleepStagesChart';
-import { StepsChart } from './charts/stepsChart';
+import StepsChart from './charts/stepsChart';
 import { VO2MaxChart } from './charts/VO2MaxChart';
 import { WeightChart } from './charts/weightChart';
 import { DailyWorkoutChart } from './charts/workoutChart';
